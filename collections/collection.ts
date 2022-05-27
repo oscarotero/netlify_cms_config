@@ -1,3 +1,15 @@
+export interface ViewFilter {
+  label: string;
+  field: string;
+  pattern: string | boolean;
+}
+
+export interface ViewGroups {
+  label: string;
+  field: string;
+  pattern?: string | boolean;
+}
+
 export interface Options {
   name?: string;
   description?: string;
@@ -6,6 +18,8 @@ export interface Options {
   hide?: boolean;
   delete?: boolean;
   sortable_fields?: string[];
+  view_filters?: ViewFilter[];
+  view_groups?: ViewGroups[];
   editor?: {
     preview?: boolean;
   };
@@ -74,6 +88,22 @@ export default class Collection {
   /** Set to false to disable the preview pane for this collection or file. */
   preview(preview = true): this {
     this.config.editor = { preview };
+    return this;
+  }
+
+  /** Add a predefined view filters to show in the UI. */
+  viewFilter(label: string, field: string, pattern: string | boolean): this {
+    const filters = this.config.view_filters || [];
+    filters.push({ label, field, pattern });
+    this.config.view_filters = filters;
+    return this;
+  }
+
+  /** Add a predefined group filters to show in the UI. */
+  viewGroup(label: string, field: string, pattern: string | boolean): this {
+    const filters = this.config.view_groups || [];
+    filters.push({ label, field, pattern });
+    this.config.view_groups = filters;
     return this;
   }
 

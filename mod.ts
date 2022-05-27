@@ -135,7 +135,13 @@ const factory = {
    * @see https://www.netlifycms.org/docs/widgets/#hidden
    */
   hidden(label: string, value?: unknown): Hidden {
-    return new Hidden(label).default(value);
+    const field = new Hidden(label);
+
+    if (value !== undefined) {
+      field.default(value);
+    }
+
+    return field;
   },
 
   /**
@@ -211,7 +217,10 @@ const factory = {
     const relation = new Relation(label);
 
     if (target) {
-      relation.target(target, id!, searchFields);
+      if (!id) {
+        throw new Error("Relation target must have an id");
+      }
+      relation.target(target, id, searchFields);
     }
 
     return relation;
