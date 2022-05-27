@@ -18,6 +18,5 @@ const options: SnapshotOptions = {
 };
 
 Deno.test("Config generation", async (context) => {
-  console.log(config.collections);
   await assertSnapshot(context, config, options);
 });
