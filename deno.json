@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "deno test --allow-read --allow-write",
+    "test:update": "deno task test -- --update"
+  }
+}
