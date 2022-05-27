@@ -2,7 +2,6 @@ import f from "../mod.ts";
 
 // Set defaults
 f.defaultRequired = false;
-f.defaults.image.media_library.allow_multiple = false;
 f.defaults.object.collapsed = true;
 f.defaults.list.collapsed = true;
 f.defaults.list.minimize_collapsed = true;
@@ -17,6 +16,13 @@ const config = {
   collections: [] as Record<string, unknown>[],
 };
 
+const metas = f.object("Metas", [
+  f.string("Title"),
+  f.string("Description"),
+  f.image("Image"),
+  f.boolean("Robots").default(true),
+]);
+
 // Create Data files collection
 const data = f.files("Data")
   .description("Editar diferentes datos de la web")
@@ -25,6 +31,7 @@ const data = f.files("Data")
   .file("Agenda", "/_data/home/calendar.yml", [
     f.string("Title"),
     f.markdown("Intro"),
+    metas,
     f.list("Days", [
       f.string("Day"),
       f.list("Events", [
@@ -38,6 +45,7 @@ const data = f.files("Data")
   .file("Speakers", "/_data/home/speakers.yml", [
     f.string("Title"),
     f.markdown("Intro"),
+    metas,
     f.list("Speakers", [
       f.string("Name"),
       f.string("Id"),
@@ -53,6 +61,7 @@ const data = f.files("Data")
   .file("Partners", "/_data/home/partners.yml", [
     f.string("Title"),
     f.markdown("Intro"),
+    metas,
     f.object("Main", [
       f.string("Alt"),
       f.image("Img").mediaFolder("img/partners"),

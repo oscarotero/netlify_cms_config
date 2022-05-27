@@ -3,6 +3,7 @@ import {
   assertSnapshot,
   SnapshotOptions,
 } from "https://deno.land/std@0.141.0/testing/snapshot.ts";
+import { stringify } from "https://deno.land/std@0.141.0/encoding/yaml.ts";
 
 const options: SnapshotOptions = {
   serializer(actual: unknown): string {
@@ -19,4 +20,5 @@ const options: SnapshotOptions = {
 
 Deno.test("Config generation", async (context) => {
   await assertSnapshot(context, config, options);
+  await assertSnapshot(context, stringify(config), options);
 });

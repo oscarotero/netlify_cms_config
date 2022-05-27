@@ -38,6 +38,39 @@ snapshot[`Config generation 1`] = `
               minimal: true,
             },
             {
+              label: "Metas",
+              name: "metas",
+              widget: "object",
+              required: false,
+              collapsed: true,
+              fields: [
+                {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Description",
+                  name: "description",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                },
+                {
+                  label: "Robots",
+                  name: "robots",
+                  widget: "boolean",
+                  required: false,
+                  default: true,
+                },
+              ],
+            },
+            {
               label: "Days",
               name: "days",
               widget: "list",
@@ -110,6 +143,39 @@ snapshot[`Config generation 1`] = `
               widget: "markdown",
               required: false,
               minimal: true,
+            },
+            {
+              label: "Metas",
+              name: "metas",
+              widget: "object",
+              required: false,
+              collapsed: true,
+              fields: [
+                {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Description",
+                  name: "description",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                },
+                {
+                  label: "Robots",
+                  name: "robots",
+                  widget: "boolean",
+                  required: false,
+                  default: true,
+                },
+              ],
             },
             {
               label: "Speakers",
@@ -199,6 +265,39 @@ snapshot[`Config generation 1`] = `
               widget: "markdown",
               required: false,
               minimal: true,
+            },
+            {
+              label: "Metas",
+              name: "metas",
+              widget: "object",
+              required: false,
+              collapsed: true,
+              fields: [
+                {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Description",
+                  name: "description",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                },
+                {
+                  label: "Robots",
+                  name: "robots",
+                  widget: "boolean",
+                  required: false,
+                  default: true,
+                },
+              ],
             },
             {
               label: "Main",
@@ -294,4 +393,270 @@ snapshot[`Config generation 1`] = `
     },
   ],
 }
+`;
+
+snapshot[`Config generation 2`] = `
+"backend:
+  name: git-gateway
+  branch: master
+media_folder: img
+collections:
+  - label: Data
+    name: data
+    description: Editar diferentes datos de la web
+    sortable_fields:
+      - title
+    editor:
+      preview: false
+    files:
+      - label: Agenda
+        name: agenda
+        file: /_data/home/calendar.yml
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Intro
+            name: intro
+            widget: markdown
+            required: false
+            minimal: true
+          - label: Metas
+            name: metas
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                required: false
+              - label: Description
+                name: description
+                widget: string
+                required: false
+              - label: Image
+                name: image
+                widget: image
+              - label: Robots
+                name: robots
+                widget: boolean
+                required: false
+                default: true
+          - label: Days
+            name: days
+            widget: list
+            required: false
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - label: Day
+                name: day
+                widget: string
+                required: false
+              - label: Events
+                name: events
+                widget: list
+                required: false
+                collapsed: true
+                minimize_collapsed: true
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Time
+                    name: time
+                    widget: string
+                    required: false
+                  - label: Speakers
+                    name: speakers
+                    widget: list
+                    required: false
+                    collapsed: true
+                    minimize_collapsed: true
+                    hint: Comma separated list of speakers identities
+                  - label: Details
+                    name: details
+                    widget: markdown
+                    required: false
+                    minimal: true
+      - label: Speakers
+        name: speakers
+        file: /_data/home/speakers.yml
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Intro
+            name: intro
+            widget: markdown
+            required: false
+            minimal: true
+          - label: Metas
+            name: metas
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                required: false
+              - label: Description
+                name: description
+                widget: string
+                required: false
+              - label: Image
+                name: image
+                widget: image
+              - label: Robots
+                name: robots
+                widget: boolean
+                required: false
+                default: true
+          - label: Speakers
+            name: speakers
+            widget: list
+            required: false
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - label: Name
+                name: name
+                widget: string
+                required: false
+              - label: Id
+                name: id
+                widget: string
+                required: false
+              - label: Company
+                name: company
+                widget: string
+                required: false
+              - label: Image
+                name: image
+                widget: image
+                media_library:
+                  media_folder: img/speakers
+              - label: Links
+                name: links
+                widget: list
+                required: false
+                collapsed: true
+                minimize_collapsed: true
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Type
+                    name: type
+                    widget: select
+                    options:
+                      - twitter
+                      - linkedin
+                      - web
+                    required: false
+                  - label: Url
+                    name: url
+                    widget: string
+                    required: false
+      - label: Partners
+        name: partners
+        file: /_data/home/partners.yml
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Intro
+            name: intro
+            widget: markdown
+            required: false
+            minimal: true
+          - label: Metas
+            name: metas
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                required: false
+              - label: Description
+                name: description
+                widget: string
+                required: false
+              - label: Image
+                name: image
+                widget: image
+              - label: Robots
+                name: robots
+                widget: boolean
+                required: false
+                default: true
+          - label: Main
+            name: main
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - label: Alt
+                name: alt
+                widget: string
+                required: false
+              - label: Img
+                name: img
+                widget: image
+                media_library:
+                  media_folder: img/partners
+              - label: Url
+                name: url
+                widget: string
+                required: false
+              - label: Text
+                name: text
+                widget: markdown
+                required: false
+                minimal: true
+          - label: Partners
+            name: partners
+            widget: list
+            required: false
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - label: Alt
+                name: alt
+                widget: string
+                required: false
+              - label: Img
+                name: img
+                widget: image
+                media_library:
+                  media_folder: img/partners
+              - label: Url
+                name: url
+                widget: string
+                required: false
+          - label: Join
+            name: join
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                required: false
+              - label: Content
+                name: content
+                widget: markdown
+                required: false
+                minimal: true
+"
 `;
