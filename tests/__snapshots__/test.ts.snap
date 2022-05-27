@@ -40,7 +40,7 @@ snapshot[`Config generation 1`] = `
             {
               label: "Days",
               name: "days",
-              widget: "color",
+              widget: "list",
               required: false,
               collapsed: true,
               minimize_collapsed: true,
@@ -54,7 +54,7 @@ snapshot[`Config generation 1`] = `
                 {
                   label: "Events",
                   name: "events",
-                  widget: "color",
+                  widget: "list",
                   required: false,
                   collapsed: true,
                   minimize_collapsed: true,
@@ -74,7 +74,7 @@ snapshot[`Config generation 1`] = `
                     {
                       label: "Speakers",
                       name: "speakers",
-                      widget: "color",
+                      widget: "list",
                       required: false,
                       collapsed: true,
                       minimize_collapsed: true,
@@ -114,7 +114,7 @@ snapshot[`Config generation 1`] = `
             {
               label: "Speakers",
               name: "speakers",
-              widget: "color",
+              widget: "list",
               required: false,
               collapsed: true,
               minimize_collapsed: true,
@@ -148,7 +148,7 @@ snapshot[`Config generation 1`] = `
                 {
                   label: "Links",
                   name: "links",
-                  widget: "color",
+                  widget: "list",
                   required: false,
                   collapsed: true,
                   minimize_collapsed: true,
@@ -239,7 +239,7 @@ snapshot[`Config generation 1`] = `
             {
               label: "Partners",
               name: "partners",
-              widget: "color",
+              widget: "list",
               required: false,
               collapsed: true,
               minimize_collapsed: true,

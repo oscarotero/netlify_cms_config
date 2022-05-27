@@ -16,7 +16,7 @@ export interface Options extends Commons {
 
 export default class List extends Field {
   static defaults: Options = {};
-  widget = "color";
+  widget = "list";
   config: Options;
 
   constructor(label: string) {
