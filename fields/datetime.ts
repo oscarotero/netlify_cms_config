@@ -1,6 +1,6 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string;
   format?: string;
   date_format?: string | boolean;
@@ -8,14 +8,15 @@ export interface Options extends Commons {
   picker_utc?: boolean;
 }
 
-export default class DateTime extends Field {
+export default class DateTime extends Field<Options> {
   static defaults: Options = {};
   widget = "datetime";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(DateTime.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(DateTime.defaults),
+  ) {
+    super(label, config);
   }
 
   /**
@@ -65,3 +66,5 @@ export default class DateTime extends Field {
     return this;
   }
 }
+
+export const defaults = new DateTime("Defaults", DateTime.defaults);

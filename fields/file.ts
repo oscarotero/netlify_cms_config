@@ -1,6 +1,6 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string;
   media_library?: {
     allow_multiple?: boolean;
@@ -10,14 +10,12 @@ export interface Options extends Commons {
   };
 }
 
-export default class File extends Field {
+export default class File extends Field<Options> {
   static defaults: Options = {};
   widget = "file";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(File.defaults);
+  constructor(label: string, config: Options = structuredClone(File.defaults)) {
+    super(label, config);
   }
 
   /** Accepts a file path string */
@@ -68,3 +66,5 @@ export default class File extends Field {
     return this;
   }
 }
+
+export const defaults = new File("Defaults", File.defaults);

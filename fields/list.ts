@@ -1,6 +1,6 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string[] | Record<string, unknown>[];
   allow_add?: boolean;
   collapsed?: boolean;
@@ -14,14 +14,12 @@ export interface Options extends Commons {
   add_to_top?: boolean;
 }
 
-export default class List extends Field {
+export default class List extends Field<Options> {
   static defaults: Options = {};
   widget = "list";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(List.defaults);
+  constructor(label: string, config: Options = structuredClone(List.defaults)) {
+    super(label, config);
   }
 
   /**
@@ -108,3 +106,5 @@ export default class List extends Field {
     return json;
   }
 }
+
+export const defaults = new List("Defaults", List.defaults);

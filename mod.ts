@@ -1,20 +1,23 @@
-import Boolean from "./fields/boolean.ts";
-import Code from "./fields/code.ts";
-import Color from "./fields/color.ts";
-import DateTime from "./fields/datetime.ts";
+import Boolean, { defaults as booleanDefaults } from "./fields/boolean.ts";
+import Code, { defaults as codeDefaults } from "./fields/code.ts";
+import Color, { defaults as colorDefaults } from "./fields/color.ts";
+import DateTime, { defaults as dateTimeDefaults } from "./fields/datetime.ts";
 import Field from "./fields/field.ts";
-import File from "./fields/file.ts";
-import Hidden from "./fields/hidden.ts";
-import Image from "./fields/image.ts";
-import List from "./fields/list.ts";
-import Map from "./fields/map.ts";
-import Markdown from "./fields/markdown.ts";
-import Number from "./fields/number.ts";
-import ObjectField from "./fields/object.ts";
-import Relation from "./fields/relation.ts";
-import Select, { Option as SelectOption } from "./fields/select.ts";
-import String from "./fields/string.ts";
-import Text from "./fields/text.ts";
+import File, { defaults as fileDefaults } from "./fields/file.ts";
+import Hidden, { defaults as hiddenDefaults } from "./fields/hidden.ts";
+import Image, { defaults as imageDefaults } from "./fields/image.ts";
+import List, { defaults as listDefaults } from "./fields/list.ts";
+import Map, { defaults as mapDefaults } from "./fields/map.ts";
+import Markdown, { defaults as markdownDefaults } from "./fields/markdown.ts";
+import Number, { defaults as numberDefaults } from "./fields/number.ts";
+import ObjectField, { defaults as objectDefaults } from "./fields/object.ts";
+import Relation, { defaults as relationDefaults } from "./fields/relation.ts";
+import Select, {
+  defaults as selectDefaults,
+  Option as SelectOption,
+} from "./fields/select.ts";
+import String, { defaults as stringDefaults } from "./fields/string.ts";
+import Text, { defaults as textDefaults } from "./fields/text.ts";
 import Files, { File as FileCollection } from "./collections/files.ts";
 import Folder from "./collections/folder.ts";
 
@@ -41,29 +44,29 @@ export {
 const factory = {
   /** Configure individual default settings for every field */
   defaults: {
-    boolean: Boolean.defaults,
-    code: Code.defaults,
-    color: Color.defaults,
-    datetime: DateTime.defaults,
-    file: File.defaults,
-    hidden: Hidden.defaults,
-    image: Image.defaults,
-    list: List.defaults,
-    map: Map.defaults,
-    markdown: Markdown.defaults,
-    number: Number.defaults,
-    object: ObjectField.defaults,
-    relation: Relation.defaults,
-    select: Select.defaults,
-    string: String.defaults,
-    text: Text.defaults,
+    boolean: booleanDefaults,
+    code: codeDefaults,
+    color: colorDefaults,
+    datetime: dateTimeDefaults,
+    file: fileDefaults,
+    hidden: hiddenDefaults,
+    image: imageDefaults,
+    list: listDefaults,
+    map: mapDefaults,
+    markdown: markdownDefaults,
+    number: numberDefaults,
+    object: objectDefaults,
+    relation: relationDefaults,
+    select: selectDefaults,
+    string: stringDefaults,
+    text: textDefaults,
   },
 
   /** Set the default `required` option for all fields */
   set defaultRequired(required: boolean) {
-    Object.values(this.defaults).forEach((field) => {
-      field.required = required;
-    });
+    for (const field of Object.values(this.defaults)) {
+      field.required(required);
+    }
   },
 
   /**

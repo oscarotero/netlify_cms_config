@@ -1,19 +1,20 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string;
   allowInput?: boolean;
   enableAlpha?: boolean;
 }
 
-export default class Color extends Field {
+export default class Color extends Field<Options> {
   static defaults: Options = {};
   widget = "color";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Color.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Color.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Sets the default value. Defaults to an empty string. */
@@ -34,3 +35,5 @@ export default class Color extends Field {
     return this;
   }
 }
+
+export const defaults = new Color("Defaults", Color.defaults);

@@ -1,19 +1,17 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   decimals?: number;
   default?: string;
   type?: "Point" | "LineString" | "Polygon";
 }
 
-export default class Map extends Field {
+export default class Map extends Field<Options> {
   static defaults: Options = {};
   widget = "map";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Map.defaults);
+  constructor(label: string, config: Options = structuredClone(Map.defaults)) {
+    super(label, config);
   }
 
   /**
@@ -40,3 +38,5 @@ export default class Map extends Field {
     return this;
   }
 }
+
+export const defaults = new Map("Defaults", Map.defaults);

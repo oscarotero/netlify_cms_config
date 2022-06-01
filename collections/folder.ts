@@ -1,7 +1,7 @@
-import Collection, { Options as Commons } from "./collection.ts";
+import Collection, { BaseOptions } from "./collection.ts";
 import type Field from "../fields/field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   folder?: string;
   fields: Field[];
   create?: boolean;
@@ -13,15 +13,16 @@ export interface Options extends Commons {
   };
 }
 
-export default class Folder extends Collection {
+export default class Folder extends Collection<Options> {
   static defaults: Options = {
     fields: [],
   };
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Folder.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Folder.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Set the folder name containing the collection files */

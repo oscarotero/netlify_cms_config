@@ -1,7 +1,7 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
 export type Option = string | { label: string; value: string };
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: Option;
   options: Option[];
   multiple?: boolean;
@@ -9,16 +9,17 @@ export interface Options extends Commons {
   max?: number;
 }
 
-export default class Select extends Field {
+export default class Select extends Field<Options> {
   static defaults: Options = {
     options: [],
   };
   widget = "select";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Select.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Select.defaults),
+  ) {
+    super(label, config);
   }
 
   /**
@@ -59,3 +60,5 @@ export default class Select extends Field {
     return this;
   }
 }
+
+export const defaults = new Select("Defaults", Select.defaults);

@@ -1,17 +1,18 @@
-export interface Options {
+export interface BaseOptions {
   name?: string;
   required?: boolean;
   hint?: string;
   pattern?: [string, string][];
 }
 
-export default class Field {
+export default class Field<Options extends BaseOptions = BaseOptions> {
   widget = "";
   label: string;
-  config: Options = {};
+  config: Options;
 
-  constructor(label: string) {
+  constructor(label: string, config: Options) {
     this.label = label;
+    this.config = config;
   }
 
   /** Get the current name */
@@ -20,7 +21,8 @@ export default class Field {
   }
 
   /** Return the field as JSON */
-  toJSON(): Record<string, unknown> {
+  // deno-lint-ignore no-explicit-any
+  toJSON(): Record<string, any> {
     return {
       label: this.label,
       name: this.getName(),

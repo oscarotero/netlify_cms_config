@@ -1,8 +1,8 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 import { File } from "../collections/files.ts";
 import Folder from "../collections/folder.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   collection: string;
   value_field: string;
   search_fields: string[];
@@ -15,18 +15,19 @@ export interface Options extends Commons {
   options_length?: number;
 }
 
-export default class Relation extends Field {
+export default class Relation extends Field<Options> {
   static defaults: Options = {
     collection: "",
     value_field: "",
     search_fields: [],
   };
   widget = "relation";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Relation.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Relation.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Relate automatically with a folder/file collection */
@@ -133,3 +134,5 @@ export default class Relation extends Field {
     return this;
   }
 }
+
+export const defaults = new Relation("Defaults", Relation.defaults);

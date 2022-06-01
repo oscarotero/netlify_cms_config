@@ -10,7 +10,7 @@ export interface ViewGroups {
   pattern?: string | boolean;
 }
 
-export interface Options {
+export interface BaseOptions {
   name?: string;
   description?: string;
   label_singular?: string;
@@ -25,12 +25,13 @@ export interface Options {
   };
 }
 
-export default class Collection {
+export default class Collection<Options extends BaseOptions = BaseOptions> {
   label: string;
-  config: Options = {};
+  config: Options;
 
-  constructor(label: string) {
+  constructor(label: string, config: Options) {
     this.label = label;
+    this.config = config;
   }
 
   /** Get the current name */
@@ -108,7 +109,8 @@ export default class Collection {
   }
 
   /** Return the collection as JSON */
-  toJSON(): Record<string, unknown> {
+  // deno-lint-ignore no-explicit-any
+  toJSON(): Record<string, any> {
     return {
       label: this.label,
       name: this.getName(),

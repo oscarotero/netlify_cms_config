@@ -2,10 +2,10 @@ import f from "../mod.ts";
 
 // Set defaults
 f.defaultRequired = false;
-f.defaults.object.collapsed = true;
-f.defaults.list.collapsed = true;
-f.defaults.list.minimize_collapsed = true;
-f.defaults.markdown.minimal = true;
+f.defaults.object.collapsed(true);
+f.defaults.list.collapsed(true);
+f.defaults.list.minimizeCollapsed(true);
+f.defaults.markdown.minimal(true);
 
 const config = {
   backend: {

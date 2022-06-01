@@ -1,14 +1,14 @@
-import File, { Options as FileOptions } from "./file.ts";
+import File, { Options as BaseOptions } from "./file.ts";
 
-export type Options = FileOptions;
+export type Options = BaseOptions;
 
 export default class Image extends File {
   static defaults: Options = {};
   widget = "image";
-  config: Options = {};
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(File.defaults);
+  constructor(label: string, config: Options = structuredClone(File.defaults)) {
+    super(label, config);
   }
 }
+
+export const defaults = new Image("Defaults", Image.defaults);

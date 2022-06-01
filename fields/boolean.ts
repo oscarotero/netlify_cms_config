@@ -1,17 +1,18 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: boolean;
 }
 
-export default class Boolean extends Field {
+export default class Boolean extends Field<Options> {
   static defaults: Options = {};
   widget = "boolean";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Boolean.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Boolean.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Default value for the boolean field */
@@ -20,3 +21,5 @@ export default class Boolean extends Field {
     return this;
   }
 }
+
+export const defaults = new Boolean("Defaults", Boolean.defaults);

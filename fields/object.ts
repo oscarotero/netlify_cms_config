@@ -1,22 +1,23 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: Record<string, unknown>;
   collapsed?: boolean;
   summary?: string;
   fields: Field[];
 }
 
-export default class Object extends Field {
+export default class Object extends Field<Options> {
   static defaults: Options = {
     fields: [],
   };
   widget = "object";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Object.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Object.defaults),
+  ) {
+    super(label, config);
   }
 
   /** You can set defaults within each sub-field's configuration */
@@ -53,3 +54,5 @@ export default class Object extends Field {
     return json;
   }
 }
+
+export const defaults = new Object("Defaults", Object.defaults);

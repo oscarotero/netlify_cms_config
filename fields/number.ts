@@ -1,8 +1,8 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
 export type ValueType = "int" | "float";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string | number;
   value_type?: ValueType;
   min?: number;
@@ -10,14 +10,15 @@ export interface Options extends Commons {
   step?: number;
 }
 
-export default class Number extends Field {
+export default class Number extends Field<Options> {
   static defaults: Options = {};
   widget = "number";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Number.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Number.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Accepts string or number value. Defaults to empty string */
@@ -50,3 +51,5 @@ export default class Number extends Field {
     return this;
   }
 }
+
+export const defaults = new Number("Defaults", Number.defaults);

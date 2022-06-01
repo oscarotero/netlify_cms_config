@@ -1,6 +1,6 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default_language?: string;
   allow_language_selection?: boolean;
   keys?: {
@@ -10,14 +10,12 @@ export interface Options extends Commons {
   output_code_only?: boolean;
 }
 
-export default class Code extends Field {
+export default class Code extends Field<Options> {
   static defaults: Options = {};
   widget = "code";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Code.defaults);
+  constructor(label: string, config: Options = structuredClone(Code.defaults)) {
+    super(label, config);
   }
 
   /** Default language to use */
@@ -47,3 +45,5 @@ export default class Code extends Field {
     return this;
   }
 }
+
+export const defaults = new Code("Defaults", Code.defaults);

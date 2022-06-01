@@ -1,19 +1,20 @@
-import Collection, { Options as Commons } from "./collection.ts";
+import Collection, { BaseOptions } from "./collection.ts";
 import type Field from "../fields/field.ts";
 
-export interface FilesOptions extends Commons {
+export interface Options extends BaseOptions {
   files: File[];
 }
 
-export default class Files extends Collection {
-  static defaults: FilesOptions = {
+export default class Files extends Collection<Options> {
+  static defaults: Options = {
     files: [],
   };
-  config: FilesOptions;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Files.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Files.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Create a new File instance to this collection */
@@ -43,21 +44,22 @@ export default class Files extends Collection {
   }
 }
 
-export interface FileOptions extends Commons {
+export interface FileOptions extends BaseOptions {
   file?: string;
   fields: Field[];
 }
 
-export class File extends Collection {
+export class File extends Collection<FileOptions> {
   static defaults: FileOptions = {
     fields: [],
   };
   #parent?: Files;
-  config: FileOptions;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(File.defaults);
+  constructor(
+    label: string,
+    config: FileOptions = structuredClone(File.defaults),
+  ) {
+    super(label, config);
   }
 
   set parent(parent: Files | undefined) {

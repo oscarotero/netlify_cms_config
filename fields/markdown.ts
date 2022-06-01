@@ -1,4 +1,4 @@
-import Field, { Options as Commons } from "./field.ts";
+import Field, { BaseOptions } from "./field.ts";
 
 export type Button =
   | "bold"
@@ -17,7 +17,7 @@ export type Button =
 export type Mode = "raw" | "rich-text";
 export type Component = "image" | "code-block";
 
-export interface Options extends Commons {
+export interface Options extends BaseOptions {
   default?: string;
   minimal?: boolean;
   buttons?: Button[];
@@ -26,14 +26,15 @@ export interface Options extends Commons {
   sanitize_preview?: boolean;
 }
 
-export default class Markdown extends Field {
+export default class Markdown extends Field<Options> {
   static defaults: Options = {};
   widget = "markdown";
-  config: Options;
 
-  constructor(label: string) {
-    super(label);
-    this.config = structuredClone(Markdown.defaults);
+  constructor(
+    label: string,
+    config: Options = structuredClone(Markdown.defaults),
+  ) {
+    super(label, config);
   }
 
   /** Accepts markdown content */
@@ -81,3 +82,5 @@ export default class Markdown extends Field {
     return this;
   }
 }
+
+export const defaults = new Markdown("Defaults", Markdown.defaults);
