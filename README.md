@@ -127,10 +127,11 @@ To avoid repetition, you can set default values:
 ```ts
 import f from "./mod.ts";
 
-// Set all fields as optional by default
+// Special case to set the `required` option to false
+// applied to all fields
 f.defaultRequired = false;
 
 // Configure settings individually by field
-f.defaults.list.collapsed = true;
-f.defaults.markdown.buttons = ["bold", "italic", "link"];
+f.defaults.markdown.buttons(["bold", "italic", "link"]);
+f.defaults.list.collapsed(true).minimizeCollapsed(true);
 ```
