@@ -60,6 +60,7 @@ snapshot[`Config generation 1`] = `
                   label: "Image",
                   name: "image",
                   widget: "image",
+                  required: false,
                 },
                 {
                   label: "Robots",
@@ -167,6 +168,7 @@ snapshot[`Config generation 1`] = `
                   label: "Image",
                   name: "image",
                   widget: "image",
+                  required: false,
                 },
                 {
                   label: "Robots",
@@ -207,6 +209,7 @@ snapshot[`Config generation 1`] = `
                   label: "Image",
                   name: "image",
                   widget: "image",
+                  required: false,
                   media_library: {
                     media_folder: "img/speakers",
                   },
@@ -289,6 +292,7 @@ snapshot[`Config generation 1`] = `
                   label: "Image",
                   name: "image",
                   widget: "image",
+                  required: false,
                 },
                 {
                   label: "Robots",
@@ -316,6 +320,7 @@ snapshot[`Config generation 1`] = `
                   label: "Img",
                   name: "img",
                   widget: "image",
+                  required: false,
                   media_library: {
                     media_folder: "img/partners",
                   },
@@ -353,6 +358,7 @@ snapshot[`Config generation 1`] = `
                   label: "Img",
                   name: "img",
                   widget: "image",
+                  required: false,
                   media_library: {
                     media_folder: "img/partners",
                   },
@@ -439,6 +445,7 @@ collections:
               - label: Image
                 name: image
                 widget: image
+                required: false
               - label: Robots
                 name: robots
                 widget: boolean
@@ -512,6 +519,7 @@ collections:
               - label: Image
                 name: image
                 widget: image
+                required: false
               - label: Robots
                 name: robots
                 widget: boolean
@@ -539,6 +547,7 @@ collections:
               - label: Image
                 name: image
                 widget: image
+                required: false
                 media_library:
                   media_folder: img/speakers
               - label: Links
@@ -594,6 +603,7 @@ collections:
               - label: Image
                 name: image
                 widget: image
+                required: false
               - label: Robots
                 name: robots
                 widget: boolean
@@ -612,6 +622,7 @@ collections:
               - label: Img
                 name: img
                 widget: image
+                required: false
                 media_library:
                   media_folder: img/partners
               - label: Url
@@ -637,6 +648,7 @@ collections:
               - label: Img
                 name: img
                 widget: image
+                required: false
                 media_library:
                   media_folder: img/partners
               - label: Url
