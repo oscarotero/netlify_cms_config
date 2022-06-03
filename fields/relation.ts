@@ -43,9 +43,9 @@ export default class Relation extends Field<Options> {
         throw new Error("File must be a child of a Files collection");
       }
 
-      const { file, fields } = collection.config;
-      this.config.file = file;
+      const { fields } = collection.config;
       this.config.collection = parent?.getName();
+      this.config.file = collection.getName();
       this.config.search_fields = searchFields || [fields[0].getName()];
       this.config.value_field = valueField;
       return this;
