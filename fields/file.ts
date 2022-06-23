@@ -2,12 +2,11 @@ import Field, { BaseOptions } from "./field.ts";
 
 export interface Options extends BaseOptions {
   default?: string;
-  media_library?: {
-    allow_multiple?: boolean;
-    config?: Record<string, unknown>;
-    media_folder?: string;
-    choose_url?: boolean;
-  };
+  media_library?: Record<string, unknown>;
+  allow_multiple?: boolean;
+  config?: Record<string, unknown>;
+  media_folder?: string;
+  choose_url?: boolean;
 }
 
 export default class File extends Field<Options> {
@@ -29,9 +28,7 @@ export default class File extends Field<Options> {
    * but must be supported by the extension in use.
    */
   allowMultiple(allow_multiple = true): this {
-    const { media_library = {} } = this.config;
-    media_library.allow_multiple = allow_multiple;
-    this.config.media_library = media_library;
+    this.config.allow_multiple = allow_multiple;
     return this;
   }
 
@@ -40,9 +37,7 @@ export default class File extends Field<Options> {
    * Available options are determined by the library
    */
   mediaConfig(config: Record<string, unknown>): this {
-    const { media_library = {} } = this.config;
-    media_library.config = config;
-    this.config.media_library = media_library;
+    this.config.config = config;
     return this;
   }
 
@@ -52,17 +47,13 @@ export default class File extends Field<Options> {
    * or absolute with reference to the base of the repo which needs to begin with / (e.g /static/files will save uploaded files to the static folder in a sub folder named files)
    */
   mediaFolder(media_folder: string): this {
-    const { media_library = {} } = this.config;
-    media_library.media_folder = media_folder;
-    this.config.media_library = media_library;
+    this.config.media_folder = media_folder;
     return this;
   }
 
   /** When set to false, the "Insert from URL" button will be hidden */
   chooseUrl(choose_url = true): this {
-    const { media_library = {} } = this.config;
-    media_library.choose_url = choose_url;
-    this.config.media_library = media_library;
+    this.config.choose_url = choose_url;
     return this;
   }
 }

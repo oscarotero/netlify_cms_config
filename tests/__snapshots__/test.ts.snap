@@ -210,9 +210,7 @@ snapshot[`Config generation 1`] = `
                   name: "image",
                   widget: "image",
                   required: false,
-                  media_library: {
-                    media_folder: "img/speakers",
-                  },
+                  media_folder: "img/speakers",
                 },
                 {
                   label: "Links",
@@ -321,9 +319,7 @@ snapshot[`Config generation 1`] = `
                   name: "img",
                   widget: "image",
                   required: false,
-                  media_library: {
-                    media_folder: "img/partners",
-                  },
+                  media_folder: "img/partners",
                 },
                 {
                   label: "Url",
@@ -359,9 +355,7 @@ snapshot[`Config generation 1`] = `
                   name: "img",
                   widget: "image",
                   required: false,
-                  media_library: {
-                    media_folder: "img/partners",
-                  },
+                  media_folder: "img/partners",
                 },
                 {
                   label: "Url",
@@ -548,8 +542,7 @@ collections:
                 name: image
                 widget: image
                 required: false
-                media_library:
-                  media_folder: img/speakers
+                media_folder: img/speakers
               - label: Links
                 name: links
                 widget: list
@@ -623,8 +616,7 @@ collections:
                 name: img
                 widget: image
                 required: false
-                media_library:
-                  media_folder: img/partners
+                media_folder: img/partners
               - label: Url
                 name: url
                 widget: string
@@ -649,8 +641,7 @@ collections:
                 name: img
                 widget: image
                 required: false
-                media_library:
-                  media_folder: img/partners
+                media_folder: img/partners
               - label: Url
                 name: url
                 widget: string
