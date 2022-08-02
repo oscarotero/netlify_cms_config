@@ -77,6 +77,14 @@ export default class Collection<Options extends BaseOptions = BaseOptions> {
   }
 
   /**
+   * false prevents users from deleting items in a collection
+   */
+  delete(del = true): this {
+    this.config.delete = del;
+    return this;
+  }
+
+  /**
    * list of sort fields to show in the UI.
    * Defaults to inferring title, date, author and description fields and will also show Update On sort field in git based backends.
    * When author field can't be inferred commit author will be used.

@@ -27,6 +27,7 @@ const data = f.files("Data")
   .description("Editar diferentes datos de la web")
   .sortableFields("title")
   .preview(false)
+  .delete(false)
   .file("Agenda", "/_data/home/calendar.yml", [
     f.string("Title"),
     f.markdown("Intro"),
