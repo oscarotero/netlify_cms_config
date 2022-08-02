@@ -7,6 +7,8 @@ export interface Options extends BaseOptions {
   create?: boolean;
   slug?: string;
   identifier_field?: string;
+  media_folder?: string;
+  public_folder?: string;
   filter?: {
     field: string;
     value: string;
@@ -28,6 +30,18 @@ export default class Folder extends Collection<Options> {
   /** Set the folder name containing the collection files */
   folder(folder: string): this {
     this.config.folder = folder;
+    return this;
+  }
+
+  /** Default media folder for the collection. */
+  mediaFolder(media_folder: string): this {
+    this.config.media_folder = media_folder;
+    return this;
+  }
+
+  /** Default public folder for the collection. */
+  publicFolder(public_folder: string): this {
+    this.config.public_folder = public_folder;
     return this;
   }
 
