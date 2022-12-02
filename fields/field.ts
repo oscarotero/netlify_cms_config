@@ -2,7 +2,7 @@ export interface BaseOptions {
   name?: string;
   required?: boolean;
   hint?: string;
-  pattern?: [string, string][];
+  pattern?: [string, string];
 }
 
 export default class Field<Options extends BaseOptions = BaseOptions> {
@@ -55,9 +55,7 @@ export default class Field<Options extends BaseOptions = BaseOptions> {
 
   /** Add field validation by specifying a list with a regex pattern and an error message. */
   pattern(pattern: string, error: string): this {
-    const patterns = this.config.pattern || [];
-    patterns.push([pattern, error]);
-    this.config.pattern = patterns;
+    this.config.pattern = [pattern, error];
     return this;
   }
 }
