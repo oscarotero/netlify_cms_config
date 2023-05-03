@@ -18,7 +18,7 @@ import f from "./mod.ts";
 
 const field = f.string("Your name");
 
-console.log(field.toJson());
+console.log(field.toJSON());
 ```
 
 This code generates the following result:
@@ -39,7 +39,7 @@ const field = f.string("Your name")
   .name("name")
   .required(false)
   .default("Default name")
-  .toJson();
+  .toJSON();
 ```
 
 This outputs:
@@ -68,7 +68,7 @@ const posts = f.folder("Posts", "/posts")
     f.datetime("Published at"),
     f.markdown("Body"),
   ])
-  .toJson();
+  .toJSON();
 ```
 
 This outputs:
@@ -117,7 +117,7 @@ const posts = f.files("Pages")
     f.datetime("Published at"),
     f.markdown("Body"),
   ])
-  .toJson();
+  .toJSON();
 ```
 
 ## Default values
