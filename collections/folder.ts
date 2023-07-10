@@ -9,11 +9,23 @@ export interface Options extends BaseOptions {
   identifier_field?: string;
   media_folder?: string;
   public_folder?: string;
+  format?: Format;
+  extension?: Extension;
   filter?: {
     field: string;
     value: string;
   };
 }
+
+type Format =
+  | "yml"
+  | "yaml"
+  | "json"
+  | "frontmatter"
+  | "yaml-frontmatter"
+  | "toml-frontmatter"
+  | "json-frontmatter";
+type Extension = "yml" | "yaml" | "toml" | "json" | "md" | "markdown" | "html";
 
 export default class Folder extends Collection<Options> {
   static defaults: Options = {
@@ -97,6 +109,18 @@ export default class Folder extends Collection<Options> {
   /** Prevents users from deleting items in a collection. Defaults to true */
   delete(del = true): this {
     this.config.delete = del;
+    return this;
+  }
+
+  /** Set the format to be used to parse the collection files */
+  format(format: Format): this {
+    this.config.format = format;
+    return this;
+  }
+
+  /** Set the extension to be used to parse the collection files */
+  extension(extension: Extension): this {
+    this.config.extension = extension;
     return this;
   }
 
